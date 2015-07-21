@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res/com.boredream.gif"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context="com.boredream.gif.MainActivity" >
+
+    <com.boredream.gif.widget.GifView
+        android:id="@+id/gif1"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:background="#000" />
+
+    <com.boredream.gif.widget.GifView
+        android:id="@+id/gif2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#000"
+        app:src="@drawable/disuxiaoshuo" />
+
+    <com.boredream.gif.widget.GifView
+        android:id="@+id/gif3"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:background="#000" />
+
+    <SeekBar
+        android:id="@+id/pb_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_pause_or_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="pause or start" />
+
+</LinearLayout>
