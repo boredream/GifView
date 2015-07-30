@@ -23,7 +23,7 @@ public class GifView extends View {
 	private Movie mMovie;
 	
 	/**
-	 * 0-播放状态 1-暂停状态 2-帧动画播放状态
+	 * 0-播放状态 1-暂停状态
 	 */
 	private int playStatus;
 	/**
@@ -146,19 +146,17 @@ public class GifView extends View {
 	}
 	
 	/**
-	 * 停留在gif动画的某个进度上
+	 * 移动到指定进度
 	 * 
-	 * @param progress 停留进度,小于0或大于gif总长度时无效
+	 * @param progress 停留进度,小于0或大于gif动画总长度时无效
 	 */
-	public void setProgress(int progress) {
+	public void seekTo(int progress) {
 		if(mMovie == null) {
 			return;
 		}
 		
 		if(progress >= 0 && progress < mMovie.duration()) {
-			playStatus = 2;
-			
-			// 开始时间置为0,onDrawa时会重新获取
+			// 开始时间设为0,onDraw时会重置开始时间
 			mMovieStart = 0;
 			// 记录当前设置的进度,再重新播放时进行补偿修正
 			offsetTime = progress;
@@ -192,7 +190,7 @@ public class GifView extends View {
 	
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		// gif动画非空时进行大小计算
+		// gif动画非空时进行大小计算,计算方法仿造ImageView中的onMeasure
 		if (mMovie != null) {
 			int w;
 	        int h;
@@ -265,9 +263,6 @@ public class GifView extends View {
 				break;
 			case 1: // 暂停
 				// 不更新进度时间relTime,一直停留在暂停时的图片
-				break;
-			case 2: // 帧动画播放状态
-				// offsetTime此状态下,为设置的当前进度值
 				relTime = (int) offsetTime;
 				break;
 			default:
